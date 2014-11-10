@@ -25,4 +25,3 @@ def locu_search(query):
     return restaurants
 
 print locu_search("New York")
-    
