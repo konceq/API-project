@@ -1,13 +1,24 @@
 from flask import Flask,render_template,request
+import random
+import api
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['POST','GET'])
 def index():
-        return render_template("search.html", methods=["GET", "POST"])
+    if request.method=="POST":
+        print("hi")
+        if request.form.get("search") != None:
+            search = request.form.get("search")
+        restaurants = api.locu_search(search)
+        x = random.randint(0, len(restaurants))
+        answer = restaurants[x]
+        return render_template("search.html", answer = answer)
+        
+    return render_template("search.html")
 
 @app.route("/results")
-def search():
+def layout():
         return render_template("layout.html")
 
 if __name__ == "__main__":
