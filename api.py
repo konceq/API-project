@@ -1,16 +1,8 @@
 import urllib2
 import json
 
-
 tracks_api = "5f23a4113ba32c15f16e22cdceb0d0ca9073d462" #.
 locu_api = '9fb8cd70cb34cab8e83690473133f51943b5c93f'
-
-url = 'http://api.locu.com/v1_0/venue/search/?locality=New+York&category=restaurant&api_key=9fb8cd70cb34cab8e83690473133f51943b5c93f'
-'''
-json_obj = urllib2.urlopen(url)
-
-data = json.load(json_obj)
-'''
 
 def locu_search(query):
     restaurants = []
@@ -20,13 +12,26 @@ def locu_search(query):
     locality = query.replace(' ', '%20')
     final_url = url + '&locality=' + locality + '&category=restaurant'
     print(final_url)
-    json_obj = urllib2.urlopen(final_url)#cry everytime
-    #d = json_obj.read()
+    json_obj = urllib2.urlopen(final_url)
     data = json.load(json_obj)
 
     for item in data['objects']:
        restaurants.append(item['name'])
 
     return restaurants
+'''
 
-print locu_search("New York")
+def createJSON(url):
+    request = urllib2.urlopen(url+"&api_key=5f23a4113ba32c15f16e22cdceb0d0ca9073d462f")
+    resultstring = request.read()
+    return json.loads(resultstring)
+    
+def tracks_search(query):
+    url='http://8tracks.com/mix_sets/tags:'+ query +'.json?include=mixes'
+    results = createJSON(url)
+    mixTitle = results["mixes"][0]["name"]
+    return mixTitle
+
+print tracks_search('Hello')
+'''
+

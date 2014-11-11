@@ -13,7 +13,7 @@ def index():
         restaurants = api.locu_search(search)
         x = random.randint(0, len(restaurants))
         answer = restaurants[x]
-        return render_template("search.html", answer = answer)
+        return render_template("layout.html", answer = answer)
         
     return render_template("search.html")
 
