@@ -2,8 +2,17 @@
 
 
 {% block body %}
-<h1> Search Restaruant </h1>
 
+{% if answer %}
+<center>
+<h1>{{answer}}</h1>
+<br>
+<iframe src="http://8tracks.com/mixes/{{ID}}/player_v3_universal" width="400" height="400"></iframe><br>
+<fonr size="2">Appropriate music: <a href="?utm_medium=trax_embed">{{Title}}</a> from <a href="?utm_medium=trax_embed">{{User}}</a> on <a href="http://8tracks.com?utm_medium=trax_embed">8tracks Radio</a>.</p>
+</center>
+{% endif %}
+<br>
+<h1> Search Restaruant </h1>
 <br>
 <br>
 <fieldset>
@@ -20,6 +29,7 @@
 </form>
 </div>
 
+<br>
 <br>
 
 {% endblock %}

@@ -19,7 +19,7 @@ def locu_search(query):
        restaurants.append(item['name'])
 
     return restaurants
-'''
+
 
 def createJSON(url):
     request = urllib2.urlopen(url+"&api_key=5f23a4113ba32c15f16e22cdceb0d0ca9073d462f")
@@ -28,10 +28,18 @@ def createJSON(url):
     
 def tracks_search(query):
     url='http://8tracks.com/mix_sets/tags:'+ query +'.json?include=mixes'
+    print url+"&api_key=5f23a4113ba32c15f16e22cdceb0d0ca9073d462f"
     results = createJSON(url)
-    mixTitle = results["mixes"][0]["name"]
-    return mixTitle
+    if "mixes" in results:
+        if len(results["mixes"]) > 0:
+            return_list = []
+            return_list.append(results["mixes"][0]["id"])
+            return_list.append(results["mixes"][0]["name"])
+            return_list.append(results["mixes"][0]["user"]["login"])
+            return return_list
+    return None
+    
 
-print tracks_search('Hello')
-'''
+#print tracks_search('jazz')
+
 
