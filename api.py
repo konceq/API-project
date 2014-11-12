@@ -38,8 +38,6 @@ def tracks_search(query):
             return_list.append(results["mixes"][0]["user"]["login"])
             return return_list
     return None
-    
 
-#print tracks_search('jazz')
-
+#print tracks_search('Jazz')
 

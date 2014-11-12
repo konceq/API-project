@@ -10,10 +10,13 @@ def getRest(search):
     answer = restaurants[x]
     return answer
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 @app.route("/", methods=['POST','GET'])
 def index():
     if request.method=="POST":
-        #print("hi")
         if request.form.get("search") != None:
             search = request.form.get("search")
             answer = getRest(search)
@@ -26,13 +29,13 @@ def index():
                     answer = getRest(search)
                     words = answer.split(" ")
             values = api.tracks_search(words[y])
-            return render_template("search.html", answer = answer, ID = values[0], Title = values[1], User = values[2])
+            return render_template("layout.html", answer = answer, ID = values[0], Title = values[1], User = values[2])
         
     return render_template("search.html")
 
-@app.route("/results")
+@app.route("/results", methods=['POST','GET'])
 def layout():
-        return render_template("layout.html")
+    return render_template("layout.html")
 
 if __name__ == "__main__":
         app.debug=True
